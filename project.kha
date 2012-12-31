@@ -1,0 +1,217 @@
+{
+	"format": 1,
+	"game":
+	{
+		"name": "T Player",
+		"width": 800,
+		"height": 600
+	},
+	"assets":
+	[
+		{
+			"id": "a29ca2e0-0ce3-11e2-892e-0800200c9a66",
+			"type": "image",
+			"file": "bg2.png",
+			"name": "bg2"
+		},
+		{
+			"id": "a29ca2e1-0ce3-11e2-892e-0800200c9a66",
+			"type": "image",
+			"file": "t_b80x80x86.png",
+			"name": "t_b80x80x86",
+			"background":
+			{
+				"red": 0,
+				"green": 0,
+				"blue": 0
+			}
+		},
+		{
+			"id": "a29ca2e2-0ce3-11e2-892e-0800200c9a66",
+			"type": "image",
+			"file": "World9.png",
+			"name": "World9",
+			"background":
+			{
+				"red": 0,
+				"green": 0,
+				"blue": 0
+			}
+		},
+		{
+			"id": "a29ca2e3-0ce3-11e2-892e-0800200c9a66",
+			"type": "image",
+			"file": "enemy_fliege_b2x44x28.png",
+			"name": "enemy_fliege_b2x44x28",
+			"background":
+			{
+				"red": 0,
+				"green": 0,
+				"blue": 0
+			}
+		},
+		{
+			"id": "a29ca2e4-0ce3-11e2-892e-0800200c9a66",
+			"type": "image",
+			"file": "enemy_walker_b12x48x42.png",
+			"name": "enemy_walker_b12x48x42",
+			"background":
+			{
+				"red": 0,
+				"green": 0,
+				"blue": 0
+			}
+		},
+		{
+			"id": "a29ca2e5-0ce3-11e2-892e-0800200c9a66",
+			"type": "image",
+			"file": "explo_normal_b5x58x54.png",
+			"name": "explo_normal_b5x58x54",
+			"background":
+			{
+				"red": 0,
+				"green": 0,
+				"blue": 0
+			}
+		},
+		{
+			"id": "a29ca2e6-0ce3-11e2-892e-0800200c9a66",
+			"type": "image",
+			"file": "tshot_kugel_klein_b2x16x16.png",
+			"name": "tshot_kugel_klein_b2x16x16",
+			"background":
+			{
+				"red": 0,
+				"green": 0,
+				"blue": 0
+			}
+		},
+		{
+			"id": "a29ca2e7-0ce3-11e2-892e-0800200c9a66",
+			"type": "image",
+			"file": "tshot_kugel_normal_b1x32x32.png",
+			"name": "tshot_kugel_normal_b1x32x32",
+			"background":
+			{
+				"red": 0,
+				"green": 0,
+				"blue": 0
+			}
+		},
+		{
+			"id": "a29ca2e8-0ce3-11e2-892e-0800200c9a66",
+			"type": "image",
+			"file": "explo_klein_b4x28x28.png",
+			"name": "explo_klein_b4x28x28",
+			"background":
+			{
+				"red": 0,
+				"green": 0,
+				"blue": 0
+			}
+		},
+		{
+			"id": "a29ca2e9-0ce3-11e2-892e-0800200c9a66",
+			"type": "image",
+			"file": "explo_abschussl_b1x30x30.png",
+			"name": "explo_abschussl_b1x30x30",
+			"background":
+			{
+				"red": 0,
+				"green": 0,
+				"blue": 0
+			}
+		},
+		{
+			"id": "a29ca2ea-0ce3-11e2-892e-0800200c9a66",
+			"type": "image",
+			"file": "explo_abschussr_b1x30x30.png",
+			"name": "explo_abschussr_b1x30x30",
+			"background":
+			{
+				"red": 0,
+				"green": 0,
+				"blue": 0
+			}
+		},
+		{
+			"id": "a29ca2eb-0ce3-11e2-892e-0800200c9a66",
+			"type": "sound",
+			"file": "explo_normal",
+			"name": "explo_normal"
+		},
+		{
+			"id": "a29ca2ec-0ce3-11e2-892e-0800200c9a66",
+			"type": "sound",
+			"file": "enemy_platt",
+			"name": "enemy_platt"
+		},
+		{
+			"id": "a29ca2ed-0ce3-11e2-892e-0800200c9a66",
+			"type": "sound",
+			"file": "T_fall_landing",
+			"name": "T_fall_landing"
+		},
+		{
+			"id": "a29ca2ee-0ce3-11e2-892e-0800200c9a66",
+			"type": "sound",
+			"file": "T_shot_kugel_normal",
+			"name": "T_shot_kugel_normal"
+		},
+		{
+			"id": "a29ca2ef-0ce3-11e2-892e-0800200c9a66",
+			"type": "sound",
+			"file": "T_shot_kugel_klein",
+			"name": "T_shot_kugel_klein"
+		},
+		{
+			"id": "a29ca2f0-0ce3-11e2-892e-0800200c9a66",
+			"type": "music",
+			"file": "L_cave",
+			"name": "L_cave"
+		},
+		{
+			"id": "a29ca2f1-0ce3-11e2-892e-0800200c9a66",
+			"type": "blob",
+			"file": "Level2.lv6",
+			"name": "Level2.lv6"
+		},
+		{
+			"id": "a29ca2f2-0ce3-11e2-892e-0800200c9a66",
+			"type": "blob",
+			"file": "World9.bl6",
+			"name": "World9.bl6"
+		}
+	],
+	"rooms":
+	[
+		{
+			"id" : "a29ca2f3-0ce3-11e2-892e-0800200c9a66",
+			"name": "level1",
+			"parent": null,
+			"neighbours": [],
+			"assets":
+			[
+				"a29ca2e0-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2e1-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2e2-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2e3-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2e4-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2e5-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2e6-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2e7-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2e8-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2e9-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2ea-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2eb-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2ec-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2ed-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2ee-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2ef-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2f0-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2f1-0ce3-11e2-892e-0800200c9a66",
+				"a29ca2f2-0ce3-11e2-892e-0800200c9a66"
+			]
+		}
+	]
+}
