@@ -15,7 +15,7 @@ class BallShot extends Sprite {
 	}
 	
 	public function new(x : Float, y : Float, right : Bool) {
-		super(Loader.the.getImage("tshot_kugel_normal_b1x32x32.png"), 32, 32, 0);
+		super(Loader.the.getImage("tshot_kugel_normal_b1x32x32"), 32, 32, 0);
 		this.x = x - 32 / 2;
 		this.y = y - 32 / 2;
 		speedx = right ? 10 : -10;

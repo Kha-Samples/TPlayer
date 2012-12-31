@@ -16,7 +16,7 @@ class SmallBallShot extends Sprite {
 	}
 	
 	public function new(x : Float, y : Float, right : Bool, up : Bool) {
-		super(Loader.the.getImage("tshot_kugel_klein_b2x16x16.png"), 16, 16, 0);
+		super(Loader.the.getImage("tshot_kugel_klein_b2x16x16"), 16, 16, 0);
 		this.x = x - 16 / 2;
 		this.y = y - 16 / 2;
 		speedx = right ? 5 : -5;

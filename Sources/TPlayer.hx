@@ -93,10 +93,10 @@ class TPlayer extends Game {
 		
 		Tile.tiles = new Array<kha.Tile>();
 		for (i in 0...num) {
-			Tile.tiles.push(new Tile(Loader.the.getImage("World9.png"), i, types[i], data1[i], data2[i], data3[i]));
+			Tile.tiles.push(new Tile(Loader.the.getImage("World9"), i, types[i], data1[i], data2[i], data3[i]));
 		}
-		var backtilemap : Tilemap = new Tilemap("World9.png", 32, 32, backmap, Tile.tiles);
-		var tilemap : Tilemap = new Tilemap("World9.png", 32, 32, map, Tile.tiles);
+		var backtilemap : Tilemap = new Tilemap("World9", 32, 32, backmap, Tile.tiles);
+		var tilemap : Tilemap = new Tilemap("World9", 32, 32, map, Tile.tiles);
 		Scene.the.setColissionMap(tilemap);
 		Scene.the.camx = xstart * 32;
 		Scene.the.camy = ystart * 32;
@@ -318,7 +318,7 @@ class TPlayer extends Game {
 	
 	override public function render(painter : Painter) : Void {
 		painter.translate(0, 0);
-		painter.drawImage(Loader.the.getImage("bg2.png"), 0, 0);
+		painter.drawImage(Loader.the.getImage("bg2"), 0, 0);
 		super.render(painter);
 	}
 	

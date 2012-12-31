@@ -26,7 +26,7 @@ class Walker extends Enemy {
 	}
 	
 	public function new(x : Float, y : Float) {
-		super(Loader.the.getImage("enemy_walker_b12x48x42.png"), 48, 42, 0);
+		super(Loader.the.getImage("enemy_walker_b12x48x42"), 48, 42, 0);
 		this.x = x;
 		this.y = y + 32 - 42;
 		running = false;

@@ -10,7 +10,7 @@ class SmallExplosion extends Sprite {
 	private var count: Int;
 	
 	public function new(x: Float, y: Float) {
-		super(Loader.the.getImage("explo_klein_b4x28x28.png"), 28, 28, 0);
+		super(Loader.the.getImage("explo_klein_b4x28x28"), 28, 28, 0);
 		this.x = x - 28 / 2;
 		this.y = y - 28 / 2;
 		setAnimation(Animation.createRange(0, 3, 4));

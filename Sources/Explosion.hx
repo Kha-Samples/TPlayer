@@ -15,7 +15,7 @@ class Explosion extends Sprite {
 	}
 	
 	public function new(x : Float, y : Float) {
-		super(Loader.the.getImage("explo_normal_b5x58x54.png"), 58, 54, 0);
+		super(Loader.the.getImage("explo_normal_b5x58x54"), 58, 54, 0);
 		this.x = x - 58 / 2;
 		this.y = y - 54 / 2;
 		setAnimation(Animation.createRange(0, 4, 4));

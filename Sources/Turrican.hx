@@ -29,7 +29,7 @@ class Turrican extends Sprite {
 	var landSound : Sound;
 	
 	public function new() {
-		super(Loader.the.getImage("t_b80x80x86.png"), Std.int(640 / 8), Std.int(860 / 10), 0);
+		super(Loader.the.getImage("t_b80x80x86"), Std.int(640 / 8), Std.int(860 / 10), 0);
 		instance = this;
 		x = y = 50;
 		standing = false;
