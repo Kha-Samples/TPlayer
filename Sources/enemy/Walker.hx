@@ -22,11 +22,11 @@ class Walker extends Enemy {
 		rightRun = new Animation([4, 5], 20);
 		leftWalk = new Animation([9, 8, 7, 6], 20);
 		leftRun = new Animation([11, 10], 20);
-		plattSound = Loader.getInstance().getSound("enemy_platt");
+		plattSound = Loader.the.getSound("enemy_platt");
 	}
 	
 	public function new(x : Float, y : Float) {
-		super(Loader.getInstance().getImage("enemy_walker_b12x48x42.png"), 48, 42, 0);
+		super(Loader.the.getImage("enemy_walker_b12x48x42.png"), 48, 42, 0);
 		this.x = x;
 		this.y = y + 32 - 42;
 		running = false;
@@ -39,8 +39,8 @@ class Walker extends Enemy {
 	override public function hitFrom(dir : Direction) : Void {
 		if (running) {
 			if ((direction == LEFT && dir == RIGHT) || (direction == RIGHT && dir == LEFT)) {
-				Scene.getInstance().removeEnemy(this);
-				Scene.getInstance().addProjectile(new Explosion(x + 48 / 2, y + 42 / 2));
+				Scene.the.removeEnemy(this);
+				Scene.the.addProjectile(new Explosion(x + 48 / 2, y + 42 / 2));
 			}
 		}
 		if (direction == LEFT && dir == RIGHT) {

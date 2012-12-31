@@ -10,7 +10,7 @@ class Enemy extends Sprite {
 	}
 	
 	public function hitWithShot() : Void {
-		Scene.getInstance().removeEnemy(this);
-		Scene.getInstance().addProjectile(new Explosion(x + width / 2, y + width / 2));
+		Scene.the.removeEnemy(this);
+		Scene.the.addProjectile(new Explosion(x + width / 2, y + width / 2));
 	}
 }

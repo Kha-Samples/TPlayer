@@ -10,7 +10,7 @@ class Fly extends Enemy {
 	var speedChangeCount : Int;
 	
 	public function new(x : Float, y : Float) {
-		super(Loader.getInstance().getImage("enemy_fliege_b2x44x28.png"), 44, 28, 0);
+		super(Loader.the.getImage("enemy_fliege_b2x44x28.png"), 44, 28, 0);
 		this.x = x + 16 - 44 / 2;
 		this.y = y + 16 - 28 / 2;
 		accy = 0;

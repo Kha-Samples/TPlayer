@@ -11,11 +11,11 @@ class Explosion extends Sprite {
 	var count : Int;
 	
 	public static function init() : Void {
-		sound = Loader.getInstance().getSound("explo_normal");
+		sound = Loader.the.getSound("explo_normal");
 	}
 	
 	public function new(x : Float, y : Float) {
-		super(Loader.getInstance().getImage("explo_normal_b5x58x54.png"), 58, 54, 0);
+		super(Loader.the.getImage("explo_normal_b5x58x54.png"), 58, 54, 0);
 		this.x = x - 58 / 2;
 		this.y = y - 54 / 2;
 		setAnimation(Animation.createRange(0, 4, 4));
@@ -26,6 +26,6 @@ class Explosion extends Sprite {
 	override public function update() : Void {
 		super.update();
 		--count;
-		if (count <= 0) Scene.getInstance().removeProjectile(this);
+		if (count <= 0) Scene.the.removeProjectile(this);
 	}
 }

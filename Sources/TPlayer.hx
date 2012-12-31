@@ -1,10 +1,10 @@
 package ;
 
 import kha.Button;
+import kha.Configuration;
 import kha.Game;
 import kha.LoadingScreen;
 import kha.Painter;
-import kha.System;
 import kha.Tilemap;
 import kha.Scene;
 import kha.Loader;
@@ -32,16 +32,16 @@ class Mapstatus {
 
 class TPlayer extends Game {
 	public function new() {
-		super("TPlayer", 800, 600, false);
+		super("TPlayer", false);
 	}
 
 	public override function init(): Void {
-		System.setScreen(new LoadingScreen(800, 600));
-		Loader.the().loadRoom("level1", levelLoaded);
+		Configuration.setScreen(new LoadingScreen());
+		Loader.the.loadRoom("level1", levelLoaded);
 	}
 	
 	function levelLoaded(): Void {
-		var blob = Loader.getInstance().getBlob("Level2.lv6");
+		var blob = Loader.the.getBlob("Level2.lv6");
 		
 		var world = blob.readUInt16LE();
 		var xstart = blob.readUInt16LE();
@@ -80,7 +80,7 @@ class TPlayer extends Game {
 		for (y in 0...height) for (x in 0...width) sprites[x][y] = blob.readUInt16LE();
 		for (y in 0...height) for (x in 0...width) hitpoints[x][y] = blob.readUInt16LE();
 		
-		var world = Loader.getInstance().getBlob("World9.bl6");
+		var world = Loader.the.getBlob("World9.bl6");
 		var num = world.readUInt16LE();
 		var types = new Array<Int>();
 		for (i in 0...num) types.push(world.readUInt16LE());
@@ -93,21 +93,21 @@ class TPlayer extends Game {
 		
 		Tile.tiles = new Array<kha.Tile>();
 		for (i in 0...num) {
-			Tile.tiles.push(new Tile(Loader.getInstance().getImage("World9.png"), i, types[i], data1[i], data2[i], data3[i]));
+			Tile.tiles.push(new Tile(Loader.the.getImage("World9.png"), i, types[i], data1[i], data2[i], data3[i]));
 		}
 		var backtilemap : Tilemap = new Tilemap("World9.png", 32, 32, backmap, Tile.tiles);
 		var tilemap : Tilemap = new Tilemap("World9.png", 32, 32, map, Tile.tiles);
-		Scene.getInstance().setColissionMap(tilemap);
-		Scene.getInstance().camx = xstart * 32;
-		Scene.getInstance().camy = ystart * 32;
-		Scene.getInstance().addBackgroundTilemap(backtilemap, 0.5);
-		Scene.getInstance().addBackgroundTilemap(tilemap, 1);
-		var music : Music = Loader.getInstance().getMusic("L_cave");
-	//	music.start();
+		Scene.the.setColissionMap(tilemap);
+		Scene.the.camx = xstart * 32;
+		Scene.the.camy = ystart * 32;
+		Scene.the.addBackgroundTilemap(backtilemap, 0.5);
+		Scene.the.addBackgroundTilemap(tilemap, 1);
+		var music: Music = Loader.the.getMusic("L_cave");
+		music.play();
 		var turrican = new Turrican();
 		turrican.x = xstart * 32;
 		turrican.y = ystart * 32;
-		Scene.getInstance().addHero(turrican);
+		Scene.the.addHero(turrican);
 		
 		Explosion.init();
 		shots.BallShot.init();
@@ -117,8 +117,8 @@ class TPlayer extends Game {
 		for (y in 0...height) {
 			for (x in 0...width) {
 				switch (sprites[x][y]) {
-				case 1: Scene.getInstance().addEnemy(new enemy.Walker(x * 32, y * 32));
-				case 2: Scene.getInstance().addEnemy(new enemy.Fly(x * 32, y * 32));
+				case 1: Scene.the.addEnemy(new enemy.Walker(x * 32, y * 32));
+				case 2: Scene.the.addEnemy(new enemy.Fly(x * 32, y * 32));
 				case 3:
 					//layer->add(new Bomb(x * 32, y * 32));
 				case 4:
@@ -304,21 +304,21 @@ class TPlayer extends Game {
 				}
 			}
 		}
-		System.setScreen(this);
+		Configuration.setScreen(this);
 	}
 
 	override public function update() : Void {
 		//++Scene.getInstance().camx;
 		//++Scene.getInstance().camy;
 		for (tile in Tile.tiles) cast(tile, Tile).update();
-		Scene.getInstance().camy = Std.int(Turrican.getInstance().y) + Std.int(Turrican.getInstance().height / 2);
+		Scene.the.camy = Std.int(Turrican.getInstance().y) + Std.int(Turrican.getInstance().height / 2);
 		super.update();
-		Scene.getInstance().camx = Std.int(Turrican.getInstance().x) + Std.int(Turrican.getInstance().width / 2);
+		Scene.the.camx = Std.int(Turrican.getInstance().x) + Std.int(Turrican.getInstance().width / 2);
 	}
 	
 	override public function render(painter : Painter) : Void {
 		painter.translate(0, 0);
-		painter.drawImage(Loader.getInstance().getImage("bg2.png"), 0, 0);
+		painter.drawImage(Loader.the.getImage("bg2.png"), 0, 0);
 		super.render(painter);
 	}
 	

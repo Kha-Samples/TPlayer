@@ -12,11 +12,11 @@ class SmallBallShot extends Sprite {
 	var reflectCount : Int;
 	
 	public static function init() : Void {
-		sound = Loader.getInstance().getSound("T_shot_kugel_klein");
+		sound = Loader.the.getSound("T_shot_kugel_klein");
 	}
 	
 	public function new(x : Float, y : Float, right : Bool, up : Bool) {
-		super(Loader.getInstance().getImage("tshot_kugel_klein_b2x16x16.png"), 16, 16, 0);
+		super(Loader.the.getImage("tshot_kugel_klein_b2x16x16.png"), 16, 16, 0);
 		this.x = x - 16 / 2;
 		this.y = y - 16 / 2;
 		speedx = right ? 5 : -5;
@@ -28,23 +28,23 @@ class SmallBallShot extends Sprite {
 	
 	override public function hit(sprite : Sprite) : Void {
 		if (Std.is(sprite, Enemy)) {
-			Scene.getInstance().removeProjectile(this);
+			Scene.the.removeProjectile(this);
 			cast(sprite, Enemy).hitWithShot();
 		}
 	}
 	
 	override public function hitFrom(dir : Direction) : Void {
-		if (reflectCount <= 0) Scene.getInstance().removeProjectile(this);
+		if (reflectCount <= 0) Scene.the.removeProjectile(this);
 		else {
 			if (dir == RIGHT || dir == LEFT) speedx = -speedx;
 			else speedy = -speedy;
 			sound.play();
 		}
-		Scene.getInstance().addProjectile(new SmallExplosion(x + 8, y + 8));
+		Scene.the.addProjectile(new SmallExplosion(x + 8, y + 8));
 		--reflectCount;
 	}
 	
 	override public function outOfView() : Void {
-		Scene.getInstance().removeProjectile(this);
+		Scene.the.removeProjectile(this);
 	}
 }

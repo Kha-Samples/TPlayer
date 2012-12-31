@@ -29,7 +29,7 @@ class Turrican extends Sprite {
 	var landSound : Sound;
 	
 	public function new() {
-		super(Loader.getInstance().getImage("t_b80x80x86.png"), Std.int(640 / 8), Std.int(860 / 10), 0);
+		super(Loader.the.getImage("t_b80x80x86.png"), Std.int(640 / 8), Std.int(860 / 10), 0);
 		instance = this;
 		x = y = 50;
 		standing = false;
@@ -39,7 +39,7 @@ class Turrican extends Sprite {
 		standRight = Animation.create(43);
 		jumpLeft = Animation.create(51);
 		jumpRight = Animation.create(49);
-		landSound = Loader.getInstance().getSound("T_fall_landing");
+		landSound = Loader.the.getSound("T_fall_landing");
 		setAnimation(jumpRight);
 		up = false;
 		right = false;
@@ -93,7 +93,7 @@ class Turrican extends Sprite {
 	}
 	
 	public function shot() {
-		Scene.getInstance().addProjectile(new BallShot(lookRight ? x + 60 : x - 20, y + 26, lookRight));
+		Scene.the.addProjectile(new BallShot(lookRight ? x + 60 : x - 20, y + 26, lookRight));
 	}
 	
 	public function setUp() {

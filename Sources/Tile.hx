@@ -82,12 +82,12 @@ class Tile extends kha.Tile {
 		return value << from >>> (31 - to + from);
 	}
 	
-	override public function collission(rect : Rectangle) : Bool {
+	override public function collision(rect: Rectangle): Bool {
 		if (collides) {
 			var xstart = Std.int(Math.round(Math.max(0.0, rect.x - 1)));
-			var xend = Std.int(Math.round(Math.min(31.0, rect.x + rect.width - 1)));
+			var xend   = Std.int(Math.round(Math.min(31.0, rect.x + rect.width - 1)));
 			var ystart = Std.int(Math.round(Math.max(0.0, rect.y - 1)));
-			var yend = Std.int(Math.round(Math.min(31.0, rect.y + rect.height - 1)));
+			var yend   = Std.int(Math.round(Math.min(31.0, rect.y + rect.height - 1)));
 			if (xend < xstart) return false;
 			for (y in ystart...yend + 1) {
 				if (bits(xstart, xend, lines[y]) != 0) return true;
