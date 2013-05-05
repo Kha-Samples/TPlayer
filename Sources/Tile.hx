@@ -37,8 +37,8 @@ class Tile extends kha.Tile {
 		case Tiletype.SPRITE: collides = false;
 		}
 		
-		var xmax = Std.int(image.getWidth() / 32);
-		var ymax = Std.int(image.getHeight() / 32);
+		var xmax = Std.int(image.width / 32);
+		var ymax = Std.int(image.height / 32);
 		var ytile : Int = Std.int(imageIndex / xmax);
 		var xtile : Int = imageIndex - ytile * xmax;
 		lines = new Array<Int>();
