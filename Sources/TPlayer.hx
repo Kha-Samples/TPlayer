@@ -43,11 +43,11 @@ class TPlayer extends Game {
 	function levelLoaded(): Void {
 		var blob = Loader.the.getBlob("Level2.lv6");
 		
-		var world = blob.readUInt16LE();
-		var xstart = blob.readUInt16LE();
-		var ystart = blob.readUInt16LE();
-		var width = blob.readUInt16LE();
-		var height = blob.readUInt16LE();
+		var world = blob.readU16LE();
+		var xstart = blob.readU16LE();
+		var ystart = blob.readU16LE();
+		var width = blob.readU16LE();
+		var height = blob.readU16LE();
 		
 		var backmap = new Array<Array<Int>>();
 		var backstate = new Array<Array<Int>>();
@@ -73,23 +73,23 @@ class TPlayer extends Game {
 			}
 		}
 		
-		for (y in 0...height) for (x in 0...width) backmap[x][y] = blob.readUInt16LE();
-		for (y in 0...height) for (x in 0...width) backstate[x][y] = blob.readUInt16LE();
-		for (y in 0...height) for (x in 0...width) map[x][y] = blob.readUInt16LE();
-		for (y in 0...height) for (x in 0...width) state[x][y] = blob.readUInt16LE();
-		for (y in 0...height) for (x in 0...width) sprites[x][y] = blob.readUInt16LE();
-		for (y in 0...height) for (x in 0...width) hitpoints[x][y] = blob.readUInt16LE();
+		for (y in 0...height) for (x in 0...width) backmap[x][y] = blob.readU16LE();
+		for (y in 0...height) for (x in 0...width) backstate[x][y] = blob.readU16LE();
+		for (y in 0...height) for (x in 0...width) map[x][y] = blob.readU16LE();
+		for (y in 0...height) for (x in 0...width) state[x][y] = blob.readU16LE();
+		for (y in 0...height) for (x in 0...width) sprites[x][y] = blob.readU16LE();
+		for (y in 0...height) for (x in 0...width) hitpoints[x][y] = blob.readU16LE();
 		
 		var world = Loader.the.getBlob("World9.bl6");
-		var num = world.readUInt16LE();
+		var num = world.readU16LE();
 		var types = new Array<Int>();
-		for (i in 0...num) types.push(world.readUInt16LE());
+		for (i in 0...num) types.push(world.readU16LE());
 		var data1 = new Array<Int>();
-		for (i in 0...num) data1.push(world.readUInt16LE());
+		for (i in 0...num) data1.push(world.readU16LE());
 		var data2 = new Array<Int>();
-		for (i in 0...num) data2.push(world.readUInt16LE());
+		for (i in 0...num) data2.push(world.readU16LE());
 		var data3 = new Array<Int>();
-		for (i in 0...num) data3.push(world.readUInt16LE());
+		for (i in 0...num) data3.push(world.readU16LE());
 		
 		Tile.tiles = new Array<kha.Tile>();
 		for (i in 0...num) {
