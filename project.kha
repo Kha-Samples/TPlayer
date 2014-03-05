@@ -31,6 +31,7 @@
 			"type": "image",
 			"file": "World9.png",
 			"name": "World9",
+			"readable": true,
 			"background":
 			{
 				"red": 0,
