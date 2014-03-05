@@ -316,10 +316,12 @@ class TPlayer extends Game {
 		Scene.the.camx = Std.int(Turrican.getInstance().x) + Std.int(Turrican.getInstance().width / 2);
 	}
 	
-	override public function render(painter : Painter) : Void {
+	override public function render(painter: Painter): Void {
+		startRender(painter);
 		painter.translate(0, 0);
 		painter.drawImage(Loader.the.getImage("bg2"), 0, 0);
-		super.render(painter);
+		scene.render(painter);
+		endRender(painter);
 	}
 	
 	override public function buttonDown(button : Button) : Void {
