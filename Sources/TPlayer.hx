@@ -9,6 +9,7 @@ import kha.Tilemap;
 import kha.Scene;
 import kha.Loader;
 import kha.Music;
+import kha.Sys;
 
 class Mapstatus {
 	static public var NORMALSTATUS = 0;
@@ -348,5 +349,22 @@ class TPlayer extends Game {
 			Turrican.getInstance().right = false;
 		default:
 		}	
+	}
+
+	public override function mouseDown(x: Int, y: Int): Void {
+		if (x > Sys.pixelWidth / 2) {
+			if (y > Sys.pixelHeight / 2) Turrican.getInstance().setUp();
+			else Turrican.getInstance().shot();
+		}
+		else {
+			if (x < Sys.pixelWidth / 4) Turrican.getInstance().left = true;
+			else Turrican.getInstance().right = true;
+		}
+	}
+	
+	public override function mouseUp(x: Int, y: Int): Void {
+		Turrican.getInstance().up = false;
+		Turrican.getInstance().left = false;
+		Turrican.getInstance().right = false;
 	}
 }
