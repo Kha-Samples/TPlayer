@@ -308,7 +308,8 @@ class TPlayer extends Game {
 		Configuration.setScreen(this);
 	}
 
-	override public function update() : Void {
+	override public function update(): Void {
+		if (Turrican.getInstance() == null) return;
 		//++Scene.getInstance().camx;
 		//++Scene.getInstance().camy;
 		for (tile in Tile.tiles) cast(tile, Tile).update();
@@ -318,6 +319,7 @@ class TPlayer extends Game {
 	}
 	
 	override public function render(painter: Painter): Void {
+		if (Turrican.getInstance() == null) return;
 		startRender(painter);
 		painter.translate(0, 0);
 		painter.drawImage(Loader.the.getImage("bg2"), 0, 0);
@@ -326,6 +328,7 @@ class TPlayer extends Game {
 	}
 	
 	override public function buttonDown(button : Button) : Void {
+		if (Turrican.getInstance() == null) return;
 		switch (button) {
 		case UP, BUTTON_1:
 			Turrican.getInstance().setUp();
@@ -340,6 +343,7 @@ class TPlayer extends Game {
 	}
 	
 	override public function buttonUp(button : Button) : Void {
+		if (Turrican.getInstance() == null) return;
 		switch (button) {
 		case UP, BUTTON_1:
 			Turrican.getInstance().up = false;
@@ -352,6 +356,7 @@ class TPlayer extends Game {
 	}
 
 	public override function mouseDown(x: Int, y: Int): Void {
+		if (Turrican.getInstance() == null) return;
 		if (x > Sys.pixelWidth / 2) {
 			if (y > Sys.pixelHeight / 2) Turrican.getInstance().setUp();
 			else Turrican.getInstance().shot();
@@ -363,6 +368,7 @@ class TPlayer extends Game {
 	}
 	
 	public override function mouseUp(x: Int, y: Int): Void {
+		if (Turrican.getInstance() == null) return;
 		Turrican.getInstance().up = false;
 		Turrican.getInstance().left = false;
 		Turrican.getInstance().right = false;
