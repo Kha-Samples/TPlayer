@@ -1,9 +1,10 @@
-package ;
+package;
 
 import kha.Starter;
 
 class Main {	
 	static function main() {
-		new Starter().start(new TPlayer());
+		var starter = new Starter();
+		starter.start(new TPlayer());
 	}
 }
