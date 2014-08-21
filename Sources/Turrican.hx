@@ -1,4 +1,4 @@
-package ;
+package;
 
 import kha.Animation;
 import kha.Direction;

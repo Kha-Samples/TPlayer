@@ -1,10 +1,13 @@
-package ;
+package;
 
 import kha.Button;
 import kha.Configuration;
+import kha.Framebuffer;
 import kha.Game;
+import kha.Image;
 import kha.LoadingScreen;
-import kha.Painter;
+import kha.math.Matrix3;
+import kha.Scaler;
 import kha.Tilemap;
 import kha.Scene;
 import kha.Loader;
@@ -32,11 +35,14 @@ class Mapstatus {
 }
 
 class TPlayer extends Game {
+	private var backbuffer: Image;
+	
 	public function new() {
 		super("TPlayer", false);
 	}
 
 	public override function init(): Void {
+		backbuffer = Image.createRenderTarget(800, 600);
 		Configuration.setScreen(new LoadingScreen());
 		Loader.the.loadRoom("level1", levelLoaded);
 	}
@@ -318,13 +324,19 @@ class TPlayer extends Game {
 		Scene.the.camx = Std.int(Turrican.getInstance().x) + Std.int(Turrican.getInstance().width / 2);
 	}
 	
-	override public function render(painter: Painter): Void {
+	override public function render(frame: Framebuffer): Void {
 		if (Turrican.getInstance() == null) return;
-		startRender(painter);
-		painter.translate(0, 0);
-		painter.drawImage(Loader.the.getImage("bg2"), 0, 0);
-		scene.render(painter);
-		endRender(painter);
+		
+		var g = backbuffer.g2;
+		g.begin();
+		g.transformation = Matrix3.identity();
+		g.drawImage(Loader.the.getImage("bg2"), 0, 0);
+		scene.render(g);
+		g.end();
+		
+		startRender(frame);
+		Scaler.scale(backbuffer, frame, Sys.screenRotation);
+		endRender(frame);
 	}
 	
 	override public function buttonDown(button : Button) : Void {

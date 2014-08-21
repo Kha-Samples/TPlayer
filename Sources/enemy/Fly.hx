@@ -3,7 +3,6 @@ package enemy;
 import kha.Animation;
 import kha.Direction;
 import kha.Loader;
-import kha.Painter;
 import kha.Sprite;
 
 class Fly extends Enemy {
