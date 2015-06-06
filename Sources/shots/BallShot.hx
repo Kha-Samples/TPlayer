@@ -1,10 +1,11 @@
 package shots;
 
 import enemy.Enemy;
-import kha.Direction;
+import kha.audio1.Audio;
+import kha2d.Direction;
 import kha.Loader;
-import kha.Scene;
-import kha.Sprite;
+import kha2d.Scene;
+import kha2d.Sprite;
 import kha.Sound;
 
 class BallShot extends Sprite {
@@ -20,7 +21,7 @@ class BallShot extends Sprite {
 		this.y = y - 32 / 2;
 		speedx = right ? 10 : -10;
 		accy = 0;
-		sound.play();
+		Audio.playSound(sound);
 	}
 	
 	override public function hit(sprite : Sprite) : Void {

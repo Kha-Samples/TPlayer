@@ -1,5 +1,6 @@
 package;
 
+import kha.audio1.Audio;
 import kha.Button;
 import kha.Configuration;
 import kha.Framebuffer;
@@ -8,8 +9,8 @@ import kha.Image;
 import kha.LoadingScreen;
 import kha.math.Matrix3;
 import kha.Scaler;
-import kha.Tilemap;
-import kha.Scene;
+import kha2d.Tilemap;
+import kha2d.Scene;
 import kha.Loader;
 import kha.Music;
 import kha.Sys;
@@ -98,7 +99,7 @@ class TPlayer extends Game {
 		var data3 = new Array<Int>();
 		for (i in 0...num) data3.push(world.readU16LE());
 		
-		Tile.tiles = new Array<kha.Tile>();
+		Tile.tiles = new Array<kha2d.Tile>();
 		for (i in 0...num) {
 			Tile.tiles.push(new Tile(Loader.the.getImage("World9"), i, types[i], data1[i], data2[i], data3[i]));
 		}
@@ -110,7 +111,7 @@ class TPlayer extends Game {
 		Scene.the.addBackgroundTilemap(backtilemap, 0.5);
 		Scene.the.addBackgroundTilemap(tilemap, 1);
 		var music: Music = Loader.the.getMusic("L_cave");
-		music.play();
+		Audio.playMusic(music, true);
 		var turrican = new Turrican();
 		turrican.x = xstart * 32;
 		turrican.y = ystart * 32;
@@ -320,7 +321,7 @@ class TPlayer extends Game {
 		//++Scene.getInstance().camy;
 		for (tile in Tile.tiles) cast(tile, Tile).update();
 		Scene.the.camy = Std.int(Turrican.getInstance().y) + Std.int(Turrican.getInstance().height / 2);
-		super.update();
+		Scene.the.update();
 		Scene.the.camx = Std.int(Turrican.getInstance().x) + Std.int(Turrican.getInstance().width / 2);
 	}
 	
@@ -331,7 +332,7 @@ class TPlayer extends Game {
 		g.begin();
 		g.transformation = Matrix3.identity();
 		g.drawImage(Loader.the.getImage("bg2"), 0, 0);
-		scene.render(g);
+		Scene.the.render(g);
 		g.end();
 		
 		startRender(frame);

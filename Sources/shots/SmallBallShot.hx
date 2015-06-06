@@ -1,11 +1,12 @@
 package shots;
 
 import enemy.Enemy;
-import kha.Direction;
+import kha.audio1.Audio;
+import kha2d.Direction;
 import kha.Loader;
-import kha.Scene;
+import kha2d.Scene;
 import kha.Sound;
-import kha.Sprite;
+import kha2d.Sprite;
 
 class SmallBallShot extends Sprite {
 	static var sound : Sound;
@@ -22,7 +23,7 @@ class SmallBallShot extends Sprite {
 		speedx = right ? 5 : -5;
 		speedy = up ? 5 : -5;
 		accy = 0;
-		sound.play();
+		Audio.playSound(sound);
 		reflectCount = 1;
 	}
 	
@@ -38,7 +39,7 @@ class SmallBallShot extends Sprite {
 		else {
 			if (dir == RIGHT || dir == LEFT) speedx = -speedx;
 			else speedy = -speedy;
-			sound.play();
+			Audio.playSound(sound);
 		}
 		Scene.the.addProjectile(new SmallExplosion(x + 8, y + 8));
 		--reflectCount;

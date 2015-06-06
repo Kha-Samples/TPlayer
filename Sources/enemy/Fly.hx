@@ -1,9 +1,9 @@
 package enemy;
 
-import kha.Animation;
-import kha.Direction;
+import kha2d.Animation;
+import kha2d.Direction;
 import kha.Loader;
-import kha.Sprite;
+import kha2d.Sprite;
 
 class Fly extends Enemy {
 	var speedChangeCount : Int;

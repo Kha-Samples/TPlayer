@@ -1,7 +1,7 @@
 package enemy;
 
-import kha.Scene;
-import kha.Sprite;
+import kha2d.Scene;
+import kha2d.Sprite;
 import kha.Image;
 
 class Enemy extends Sprite {

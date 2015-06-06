@@ -1,10 +1,10 @@
 package;
 
-import kha.Animation;
+import kha2d.Animation;
 import kha.Loader;
-import kha.Scene;
+import kha2d.Scene;
 import kha.Sound;
-import kha.Sprite;
+import kha2d.Sprite;
 
 class SmallExplosion extends Sprite {
 	private var count: Int;

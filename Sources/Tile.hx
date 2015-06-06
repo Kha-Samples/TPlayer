@@ -3,8 +3,8 @@ package ;
 import kha.Image;
 import kha.Rectangle;
 
-class Tile extends kha.Tile {
-	public static var tiles : Array<kha.Tile>;
+class Tile extends kha2d.Tile {
+	public static var tiles : Array<kha2d.Tile>;
 	var type : Int;
 	var data1 : Int;
 	var data2 : Int;

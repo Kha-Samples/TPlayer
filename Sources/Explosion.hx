@@ -1,10 +1,11 @@
-package ;
+package;
 
-import kha.Animation;
+import kha.audio1.Audio;
+import kha2d.Animation;
 import kha.Loader;
-import kha.Scene;
+import kha2d.Scene;
 import kha.Sound;
-import kha.Sprite;
+import kha2d.Sprite;
 
 class Explosion extends Sprite {
 	static var sound : Sound;
@@ -20,7 +21,7 @@ class Explosion extends Sprite {
 		this.y = y - 54 / 2;
 		setAnimation(Animation.createRange(0, 4, 4));
 		count = 4 * 5;
-		sound.play();
+		Audio.playSound(sound);
 	}
 	
 	override public function update() : Void {

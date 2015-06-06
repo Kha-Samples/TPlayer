@@ -1,12 +1,13 @@
 package enemy;
 
-import kha.Animation;
-import kha.Direction;
+import kha.audio1.Audio;
+import kha2d.Animation;
+import kha2d.Direction;
 import kha.Loader;
 import kha.Rectangle;
-import kha.Scene;
+import kha2d.Scene;
 import kha.Sound;
-import kha.Sprite;
+import kha2d.Sprite;
 
 class Walker extends Enemy {
 	static var leftWalk : Animation;
@@ -68,7 +69,7 @@ class Walker extends Enemy {
 					speedx = 4;
 				}
 				cast(sprite, Turrican).reflect();
-				plattSound.play();
+				Audio.playSound(plattSound);
 			}
 		}
 	}
