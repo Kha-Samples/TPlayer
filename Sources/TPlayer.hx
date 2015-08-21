@@ -7,7 +7,7 @@ import kha.Framebuffer;
 import kha.Game;
 import kha.Image;
 import kha.LoadingScreen;
-import kha.math.Matrix3;
+import kha.math.FastMatrix3;
 import kha.Scaler;
 import kha2d.Tilemap;
 import kha2d.Scene;
@@ -330,7 +330,7 @@ class TPlayer extends Game {
 		
 		var g = backbuffer.g2;
 		g.begin();
-		g.transformation = Matrix3.identity();
+		g.transformation = FastMatrix3.identity();
 		g.drawImage(Loader.the.getImage("bg2"), 0, 0);
 		Scene.the.render(g);
 		g.end();

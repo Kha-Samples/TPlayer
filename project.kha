@@ -1,5 +1,5 @@
 {
-	"format": 2,
+	"format": 3,
 	"game": {
 		"name": "T Player",
 		"width": 800,
@@ -117,32 +117,32 @@
 		},
 		{
 			"type": "sound",
-			"file": "explo_normal",
+			"file": "explo_normal.wav",
 			"name": "explo_normal"
 		},
 		{
 			"type": "sound",
-			"file": "enemy_platt",
+			"file": "enemy_platt.wav",
 			"name": "enemy_platt"
 		},
 		{
 			"type": "sound",
-			"file": "T_fall_landing",
+			"file": "T_fall_landing.wav",
 			"name": "T_fall_landing"
 		},
 		{
 			"type": "sound",
-			"file": "T_shot_kugel_normal",
+			"file": "T_shot_kugel_normal.wav",
 			"name": "T_shot_kugel_normal"
 		},
 		{
 			"type": "sound",
-			"file": "T_shot_kugel_klein",
+			"file": "T_shot_kugel_klein.wav",
 			"name": "T_shot_kugel_klein"
 		},
 		{
 			"type": "music",
-			"file": "L_cave",
+			"file": "L_cave.wav",
 			"name": "L_cave"
 		},
 		{
