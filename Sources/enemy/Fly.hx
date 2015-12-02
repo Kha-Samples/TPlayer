@@ -1,15 +1,15 @@
 package enemy;
 
+import kha.Assets;
 import kha2d.Animation;
 import kha2d.Direction;
-import kha.Loader;
 import kha2d.Sprite;
 
 class Fly extends Enemy {
-	var speedChangeCount : Int;
+	private var speedChangeCount: Int;
 	
-	public function new(x : Float, y : Float) {
-		super(Loader.the.getImage("enemy_fliege_b2x44x28"), 44, 28, 0);
+	public function new(x: Float, y: Float) {
+		super(Assets.images.enemy_fliege_b2x44x28, 44, 28, 0);
 		this.x = x + 16 - 44 / 2;
 		this.y = y + 16 - 28 / 2;
 		accy = 0;
@@ -17,17 +17,17 @@ class Fly extends Enemy {
 		setRandomSpeed();
 	}
 	
-	override public function update() {
+	override public function update(): Void {
 		super.update();
 		--speedChangeCount;
 		if (speedChangeCount <= 0) setRandomSpeed();
 	}
 	
-	override public function hitFrom(dir : Direction) {
+	override public function hitFrom(dir: Direction) {
 		setRandomSpeed();
 	}
 	
-	function setRandomSpeed() : Void {
+	function setRandomSpeed(): Void {
 		speedx = (Math.random() * 8) - 4;
 		speedy = (Math.random() * 8) - 4;
 		speedChangeCount = Std.int(Math.random() * 8 * 60);

@@ -1,35 +1,34 @@
 package;
 
+import kha.Assets;
 import kha2d.Animation;
 import kha2d.Direction;
-import kha.Loader;
-import kha.Music;
-import kha.Rectangle;
+import kha2d.Rectangle;
 import kha2d.Scene;
 import kha.Sound;
 import kha2d.Sprite;
 import shots.BallShot;
 
 class Turrican extends Sprite {
-	static var instance : Turrican;
-	public var left : Bool;
-	public var right : Bool;
-	public var up : Bool;
-	var lookRight : Bool;
-	var standing : Bool;
-	var killed : Bool;
-	var jumpcount : Int;
-	var lastupcount : Int;
-	var walkLeft : Animation;
-	var walkRight : Animation;
-	var standLeft : Animation;
-	var standRight : Animation;
-	var jumpLeft : Animation;
-	var jumpRight : Animation;
-	var landSound : Sound;
+	private static var instance: Turrican;
+	public var left: Bool;
+	public var right: Bool;
+	public var up: Bool;
+	private var lookRight: Bool;
+	private var standing: Bool;
+	private var killed: Bool;
+	private var jumpcount: Int;
+	private var lastupcount: Int;
+	private var walkLeft: Animation;
+	private var walkRight: Animation;
+	private var standLeft: Animation;
+	private var standRight: Animation;
+	private var jumpLeft: Animation;
+	private var jumpRight: Animation;
+	private var landSound: Sound;
 	
 	public function new() {
-		super(Loader.the.getImage("t_b80x80x86"), Std.int(640 / 8), Std.int(860 / 10), 0);
+		super(Assets.images.t_b80x80x86, Std.int(640 / 8), Std.int(860 / 10), 0);
 		instance = this;
 		x = y = 50;
 		standing = false;
@@ -39,7 +38,7 @@ class Turrican extends Sprite {
 		standRight = Animation.create(43);
 		jumpLeft = Animation.create(51);
 		jumpRight = Animation.create(49);
-		landSound = Loader.the.getSound("T_fall_landing");
+		landSound = Assets.sounds.T_fall_landing;
 		setAnimation(jumpRight);
 		up = false;
 		right = false;
@@ -51,17 +50,17 @@ class Turrican extends Sprite {
 		collider = new Rectangle(20, 16, 40, 70);
 	}
 	
-	public static function getInstance() : Turrican {
+	public static function getInstance(): Turrican {
 		return instance;
 	}
 	
-	public function reset() {
+	public function reset(): Void {
 		x = y = 50;
 		standing = false;
 		setAnimation(jumpRight);
 	}
 	
-	public override function update() {
+	public override function update(): Void {
 		if (lastupcount > 0) --lastupcount;
 		if (!killed) {
 			if (right) {
@@ -92,22 +91,22 @@ class Turrican extends Sprite {
 		super.update();
 	}
 	
-	public function shot() {
+	public function shot(): Void {
 		Scene.the.addProjectile(new BallShot(lookRight ? x + 60 : x - 20, y + 26, lookRight));
 	}
 	
-	public function setUp() {
+	public function setUp(): Void {
 		up = true;
 		lastupcount = 8;
 	}
 	
-	public function reflect() {
+	public function reflect(): Void {
 		speedy = -8;
 		jumpcount = 10;
 		standing = false;
 	}
 	
-	public override function hitFrom(dir : Direction) {
+	public override function hitFrom(dir: Direction): Void {
 		if (dir == Direction.UP) {
 			//if (speedy > 4) {
 			//	landSound.play();

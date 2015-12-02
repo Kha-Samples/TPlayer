@@ -1,7 +1,7 @@
-package ;
+package;
 
 import kha.Image;
-import kha.Rectangle;
+import kha2d.Rectangle;
 
 class Tile extends kha2d.Tile {
 	public static var tiles : Array<kha2d.Tile>;

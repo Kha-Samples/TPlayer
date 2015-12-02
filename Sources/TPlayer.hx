@@ -1,19 +1,16 @@
 package;
 
+import kha.Assets;
 import kha.audio1.Audio;
 import kha.Button;
-import kha.Configuration;
 import kha.Framebuffer;
-import kha.Game;
 import kha.Image;
-import kha.LoadingScreen;
+import kha.math.FastMatrix3;
 import kha.math.Matrix3;
 import kha.Scaler;
+import kha.System;
 import kha2d.Tilemap;
 import kha2d.Scene;
-import kha.Loader;
-import kha.Music;
-import kha.Sys;
 
 class Mapstatus {
 	static public var NORMALSTATUS = 0;
@@ -35,27 +32,23 @@ class Mapstatus {
 	static public var FBAND_L = 16;			//Fliessband von links
 }
 
-class TPlayer extends Game {
+class TPlayer {
 	private var backbuffer: Image;
 	
 	public function new() {
-		super("TPlayer", false);
+		backbuffer = Image.createRenderTarget(800, 600);
+		Assets.loadEverything(levelLoaded);
 	}
 
-	public override function init(): Void {
-		backbuffer = Image.createRenderTarget(800, 600);
-		Configuration.setScreen(new LoadingScreen());
-		Loader.the.loadRoom("level1", levelLoaded);
-	}
-	
-	function levelLoaded(): Void {
-		var blob = Loader.the.getBlob("Level2.lv6");
+	private function levelLoaded(): Void {
+		var blob = Assets.blobs.Level2;
 		
-		var world = blob.readU16LE();
-		var xstart = blob.readU16LE();
-		var ystart = blob.readU16LE();
-		var width = blob.readU16LE();
-		var height = blob.readU16LE();
+		var position: Int = 0;
+		var world = blob.readU16LE(position); position += 2;
+		var xstart = blob.readU16LE(position); position += 2;
+		var ystart = blob.readU16LE(position); position += 2;
+		var width = blob.readU16LE(position); position += 2;
+		var height = blob.readU16LE(position); position += 2;
 		
 		var backmap = new Array<Array<Int>>();
 		var backstate = new Array<Array<Int>>();
@@ -81,37 +74,37 @@ class TPlayer extends Game {
 			}
 		}
 		
-		for (y in 0...height) for (x in 0...width) backmap[x][y] = blob.readU16LE();
-		for (y in 0...height) for (x in 0...width) backstate[x][y] = blob.readU16LE();
-		for (y in 0...height) for (x in 0...width) map[x][y] = blob.readU16LE();
-		for (y in 0...height) for (x in 0...width) state[x][y] = blob.readU16LE();
-		for (y in 0...height) for (x in 0...width) sprites[x][y] = blob.readU16LE();
-		for (y in 0...height) for (x in 0...width) hitpoints[x][y] = blob.readU16LE();
+		for (y in 0...height) for (x in 0...width) { backmap[x][y] = blob.readU16LE(position); position += 2; }
+		for (y in 0...height) for (x in 0...width) { backstate[x][y] = blob.readU16LE(position); position += 2; }
+		for (y in 0...height) for (x in 0...width) { map[x][y] = blob.readU16LE(position); position += 2; }
+		for (y in 0...height) for (x in 0...width) { state[x][y] = blob.readU16LE(position); position += 2; }
+		for (y in 0...height) for (x in 0...width) { sprites[x][y] = blob.readU16LE(position); position += 2; }
+		for (y in 0...height) for (x in 0...width) { hitpoints[x][y] = blob.readU16LE(position); position += 2; }
 		
-		var world = Loader.the.getBlob("World9.bl6");
-		var num = world.readU16LE();
+		var world = Assets.blobs.World9;
+		var num = world.readU16LE(position); position += 2;
 		var types = new Array<Int>();
-		for (i in 0...num) types.push(world.readU16LE());
+		for (i in 0...num) { types.push(world.readU16LE(position)); position += 2; }
 		var data1 = new Array<Int>();
-		for (i in 0...num) data1.push(world.readU16LE());
+		for (i in 0...num) { data1.push(world.readU16LE(position)); position += 2; }
 		var data2 = new Array<Int>();
-		for (i in 0...num) data2.push(world.readU16LE());
+		for (i in 0...num) { data2.push(world.readU16LE(position)); position += 2; }
 		var data3 = new Array<Int>();
-		for (i in 0...num) data3.push(world.readU16LE());
+		for (i in 0...num) { data3.push(world.readU16LE(position)); position += 2; }
 		
 		Tile.tiles = new Array<kha2d.Tile>();
 		for (i in 0...num) {
-			Tile.tiles.push(new Tile(Loader.the.getImage("World9"), i, types[i], data1[i], data2[i], data3[i]));
+			Tile.tiles.push(new Tile(Assets.images.World9, i, types[i], data1[i], data2[i], data3[i]));
 		}
-		var backtilemap : Tilemap = new Tilemap("World9", 32, 32, backmap, Tile.tiles);
-		var tilemap : Tilemap = new Tilemap("World9", 32, 32, map, Tile.tiles);
+		var backtilemap : Tilemap = new Tilemap(Assets.images.World9, 32, 32, backmap, Tile.tiles);
+		var tilemap : Tilemap = new Tilemap(Assets.images.World9, 32, 32, map, Tile.tiles);
 		Scene.the.setColissionMap(tilemap);
 		Scene.the.camx = xstart * 32;
 		Scene.the.camy = ystart * 32;
 		Scene.the.addBackgroundTilemap(backtilemap, 0.5);
 		Scene.the.addBackgroundTilemap(tilemap, 1);
-		var music: Music = Loader.the.getMusic("L_cave");
-		Audio.playMusic(music, true);
+		var music = Assets.sounds.L_cave;
+		Audio.play(music, true, true);
 		var turrican = new Turrican();
 		turrican.x = xstart * 32;
 		turrican.y = ystart * 32;
@@ -312,10 +305,9 @@ class TPlayer extends Game {
 				}
 			}
 		}
-		Configuration.setScreen(this);
 	}
 
-	override public function update(): Void {
+	public function update(): Void {
 		if (Turrican.getInstance() == null) return;
 		//++Scene.getInstance().camx;
 		//++Scene.getInstance().camy;
@@ -325,22 +317,22 @@ class TPlayer extends Game {
 		Scene.the.camx = Std.int(Turrican.getInstance().x) + Std.int(Turrican.getInstance().width / 2);
 	}
 	
-	override public function render(frame: Framebuffer): Void {
+	public function render(frame: Framebuffer): Void {
 		if (Turrican.getInstance() == null) return;
 		
 		var g = backbuffer.g2;
 		g.begin();
-		g.transformation = Matrix3.identity();
-		g.drawImage(Loader.the.getImage("bg2"), 0, 0);
+		g.transformation = FastMatrix3.identity();
+		g.drawImage(Assets.images.bg2, 0, 0);
 		Scene.the.render(g);
 		g.end();
 		
-		startRender(frame);
-		Scaler.scale(backbuffer, frame, Sys.screenRotation);
-		endRender(frame);
+		frame.g2.begin();
+		Scaler.scale(backbuffer, frame, System.screenRotation);
+		frame.g2.end();
 	}
 	
-	override public function buttonDown(button : Button) : Void {
+	/*override public function buttonDown(button : Button) : Void {
 		if (Turrican.getInstance() == null) return;
 		switch (button) {
 		case UP, BUTTON_1:
@@ -385,5 +377,5 @@ class TPlayer extends Game {
 		Turrican.getInstance().up = false;
 		Turrican.getInstance().left = false;
 		Turrican.getInstance().right = false;
-	}
+	}*/
 }
