@@ -2,9 +2,11 @@ package;
 
 import kha.Assets;
 import kha.audio1.Audio;
-import kha.Button;
 import kha.Framebuffer;
 import kha.Image;
+import kha.input.Keyboard;
+import kha.input.Mouse;
+import kha.Key;
 import kha.math.FastMatrix3;
 import kha.math.Matrix3;
 import kha.Scaler;
@@ -41,7 +43,7 @@ class TPlayer {
 	}
 
 	private function levelLoaded(): Void {
-		var blob = Assets.blobs.Level2;
+		var blob = Assets.blobs.Level2_lv6;
 		
 		var position: Int = 0;
 		var world = blob.readU16LE(position); position += 2;
@@ -81,7 +83,8 @@ class TPlayer {
 		for (y in 0...height) for (x in 0...width) { sprites[x][y] = blob.readU16LE(position); position += 2; }
 		for (y in 0...height) for (x in 0...width) { hitpoints[x][y] = blob.readU16LE(position); position += 2; }
 		
-		var world = Assets.blobs.World9;
+		var world = Assets.blobs.World9_bl6;
+		position = 0;
 		var num = world.readU16LE(position); position += 2;
 		var types = new Array<Int>();
 		for (i in 0...num) { types.push(world.readU16LE(position)); position += 2; }
@@ -305,6 +308,9 @@ class TPlayer {
 				}
 			}
 		}
+		
+		if (Keyboard.get() != null) Keyboard.get().notify(keyDown, keyUp);
+		if (Mouse.get() != null) Mouse.get().notify(mouseDown, mouseUp, null, null);
 	}
 
 	public function update(): Void {
@@ -332,25 +338,25 @@ class TPlayer {
 		frame.g2.end();
 	}
 	
-	/*override public function buttonDown(button : Button) : Void {
+	private function keyDown(key: Key, char: String): Void {
 		if (Turrican.getInstance() == null) return;
-		switch (button) {
-		case UP, BUTTON_1:
+		switch (key) {
+		case UP:
 			Turrican.getInstance().setUp();
 		case LEFT:
 			Turrican.getInstance().left = true;
 		case RIGHT:
 			Turrican.getInstance().right = true;
-		case BUTTON_2:
+		case CTRL:
 			Turrican.getInstance().shot();
 		default:
 		}
 	}
 	
-	override public function buttonUp(button : Button) : Void {
+	public function keyUp(key: Key, char: String): Void {
 		if (Turrican.getInstance() == null) return;
-		switch (button) {
-		case UP, BUTTON_1:
+		switch (key) {
+		case UP:
 			Turrican.getInstance().up = false;
 		case LEFT:
 			Turrican.getInstance().left = false;
@@ -360,22 +366,22 @@ class TPlayer {
 		}	
 	}
 
-	public override function mouseDown(x: Int, y: Int): Void {
+	private function mouseDown(button: Int, x: Int, y: Int): Void {
 		if (Turrican.getInstance() == null) return;
-		if (x > Sys.pixelWidth / 2) {
-			if (y > Sys.pixelHeight / 2) Turrican.getInstance().setUp();
+		if (x > System.pixelWidth / 2) {
+			if (y > System.pixelHeight / 2) Turrican.getInstance().setUp();
 			else Turrican.getInstance().shot();
 		}
 		else {
-			if (x < Sys.pixelWidth / 4) Turrican.getInstance().left = true;
+			if (x < System.pixelWidth / 4) Turrican.getInstance().left = true;
 			else Turrican.getInstance().right = true;
 		}
 	}
 	
-	public override function mouseUp(x: Int, y: Int): Void {
+	private function mouseUp(button: Int, x: Int, y: Int): Void {
 		if (Turrican.getInstance() == null) return;
 		Turrican.getInstance().up = false;
 		Turrican.getInstance().left = false;
 		Turrican.getInstance().right = false;
-	}*/
+	}
 }
