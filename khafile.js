@@ -1,6 +1,6 @@
 var project = new Project('T Player');
 
-project.addLibrary('Kha2D');
+project.addLibrary('kha2d');
 
 project.addAssets('Assets/**');
 

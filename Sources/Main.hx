@@ -4,7 +4,7 @@ import kha.System;
 
 class Main {	
 	static function main() {
-		System.init("T Player", 800, 600, initialized);
+		System.init({title:"T Player", width:800, height:600}, initialized);
 	}
 	
 	private static function initialized(): Void {
