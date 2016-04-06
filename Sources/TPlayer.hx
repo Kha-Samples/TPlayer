@@ -368,12 +368,12 @@ class TPlayer {
 
 	private function mouseDown(button: Int, x: Int, y: Int): Void {
 		if (Turrican.getInstance() == null) return;
-		if (x > System.pixelWidth / 2) {
-			if (y > System.pixelHeight / 2) Turrican.getInstance().setUp();
+		if (x > System.windowWidth() / 2) {
+			if (y > System.windowHeight() / 2) Turrican.getInstance().setUp();
 			else Turrican.getInstance().shot();
 		}
 		else {
-			if (x < System.pixelWidth / 4) Turrican.getInstance().left = true;
+			if (x < System.windowWidth() / 4) Turrican.getInstance().left = true;
 			else Turrican.getInstance().right = true;
 		}
 	}
