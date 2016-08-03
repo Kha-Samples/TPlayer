@@ -107,7 +107,7 @@ class TPlayer {
 		Scene.the.addBackgroundTilemap(backtilemap, 0.5);
 		Scene.the.addBackgroundTilemap(tilemap, 1);
 		var music = Assets.sounds.L_cave;
-		Audio.play(music, true, true);
+		Audio.play(music, true);
 		var turrican = new Turrican();
 		turrican.x = xstart * 32;
 		turrican.y = ystart * 32;
