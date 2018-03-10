@@ -6,7 +6,7 @@ import kha.Framebuffer;
 import kha.Image;
 import kha.input.Keyboard;
 import kha.input.Mouse;
-import kha.Key;
+import kha.input.KeyCode;
 import kha.math.FastMatrix3;
 import kha.math.Matrix3;
 import kha.Scaler;
@@ -43,6 +43,8 @@ class TPlayer {
 	}
 
 	private function levelLoaded(): Void {
+		Scene.the.setSize(800, 600);
+
 		var blob = Assets.blobs.Level2_lv6;
 		
 		var position: Int = 0;
@@ -106,6 +108,7 @@ class TPlayer {
 		Scene.the.camy = ystart * 32;
 		Scene.the.addBackgroundTilemap(backtilemap, 0.5);
 		Scene.the.addBackgroundTilemap(tilemap, 1);
+		Scene.the.setBackgroundColor(kha.Color.fromBytes(0, 0, 0, 0));
 		var music = Assets.sounds.L_cave;
 		Audio.play(music, true);
 		var turrican = new Turrican();
@@ -338,29 +341,29 @@ class TPlayer {
 		frame.g2.end();
 	}
 	
-	private function keyDown(key: Key, char: String): Void {
+	private function keyDown(key: KeyCode): Void {
 		if (Turrican.getInstance() == null) return;
 		switch (key) {
-		case UP:
+		case Up:
 			Turrican.getInstance().setUp();
-		case LEFT:
+		case Left:
 			Turrican.getInstance().left = true;
-		case RIGHT:
+		case Right:
 			Turrican.getInstance().right = true;
-		case CTRL:
+		case Control:
 			Turrican.getInstance().shot();
 		default:
 		}
 	}
 	
-	public function keyUp(key: Key, char: String): Void {
+	public function keyUp(key: KeyCode): Void {
 		if (Turrican.getInstance() == null) return;
 		switch (key) {
-		case UP:
+		case Up:
 			Turrican.getInstance().up = false;
-		case LEFT:
+		case Left:
 			Turrican.getInstance().left = false;
-		case RIGHT:
+		case Right:
 			Turrican.getInstance().right = false;
 		default:
 		}	
