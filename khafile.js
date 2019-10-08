@@ -7,7 +7,8 @@ project.addAssets('Assets/**', {
 		red: 0,
 		green: 0,
 		blue: 0
-	}
+	},
+	readable: true
 });
 
 project.addSources('Sources');
