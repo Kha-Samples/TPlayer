@@ -1,6 +1,6 @@
 let project = new Project('T Player');
 
-project.addLibrary('kha2d');
+project.addLibrary('Kha2D');
 
 project.addAssets('Assets/**', {
 	background: {
